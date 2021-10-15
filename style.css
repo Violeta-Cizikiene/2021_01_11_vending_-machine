@@ -1,13 +1,19 @@
 * {
 	margin: 0;
+	box-sizing: border-box;
+}
+
+.container {
+	width: 400px;
+	margin-left: 10px;
+	margin-right: 10px;
 }
 
 h1, table, .error, .ok {
 	margin-top: 30px;
-	margin-left: 25px;
 }
+
 table {
-	width: 400px;
 	text-align: left;
 }
 
@@ -15,8 +21,10 @@ th {
 	width: 25%;
 }
 
-button, input {
-	width: 375px;
+button, input, table, .input-group {
+	width: 100%;
+	margin-left: 0;
+	margin-right: 0: 
 }	
 
 button {
@@ -24,7 +32,6 @@ button {
 	background-color: #003f5c;
 	border: none;
 	height: 30px;
-	margin-left: 25px;
 }
 
 button:hover {
@@ -36,7 +43,8 @@ button:hover {
 }
 
 .input-group {
-	margin: 25px;
+	margin-top: 25px;
+	margin-bottom: 25px;
 }
 
 input, button {
@@ -64,4 +72,14 @@ input, button {
 
 .informaton {
 	padding-bottom: 10px;
+}
+
+@media screen and (max-width: 360px) {
+	button {
+	margin-left: 0;
+	}
+
+	.container {
+		width: calc(100% - 20px);
+	}
 }
