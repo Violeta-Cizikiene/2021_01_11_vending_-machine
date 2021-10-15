@@ -34,7 +34,22 @@ $vendingMachine = new VendingMachine($items);
 <!-- 14 _ produktai atvaizduoti lenteleje
  -->
  <body>
-
+	<!-- 26 _ vykdomas metodas post paspaudus submit _ narsykle perkraus nebe su get, o su post -->
+	<?php
+		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+			// 28 _ kvieciamas vend metodas
+			// $_POST - specialus php kintamasis,
+			// kuris yra masyvo tipo ir laiko visus
+			// is formos atsiustus duomenis
+			// 30 _ irasomas papildomas raktas money (atsiusta reiksme is inputo)
+			// 36 _ php ["money"] paverciama skaiciais naudojant floatval _ $moneySum(vadinasi vend metode)
+			// (int) naudojamas, tik tuomet, kai norima gauti sveikuosius skaicius
+			$message = $vendingMachine->vend($_POST["code"], floatval($_POST["money"]));
+		}
+		else {
+			$message = "";
+		}
+	?>
 	<div class="container">
 		<h1>VENDING MACHINE</h1>
 	
@@ -101,20 +116,9 @@ $vendingMachine = new VendingMachine($items);
 			<button type='submit'>Buy Snack</button>
 
 		</form>
-		
-		<!-- 26 _ vykdomas metodas post paspaudus submit _ narsykle perkraus nebe su get, o su post -->
 		<?php
-			if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-				// 28 _ kvieciamas vend metodas
-				// $_POST - specialus php kintamasis,
-				// kuris yra masyvo tipo ir laiko visus
-				// is formos atsiustus duomenis
-				// 30 _ irasomas papildomas raktas money (atsiusta reiksme is inputo)
-				// 36 _ php ["money"] paverciama skaiciais naudojant floatval _ $moneySum(vadinasi vend metode)
-				// (int) naudojamas, tik tuomet, kai norima gauti sveikuosius skaicius
-				echo $vendingMachine->vend($_POST["code"], floatval($_POST["money"]));
-			}
-		?>
+			echo $message;
+		?>		
 	</div>
 </body>
 

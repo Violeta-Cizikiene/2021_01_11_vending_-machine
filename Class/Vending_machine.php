@@ -37,8 +37,12 @@ class VendingMachine
 			if($product->getPrice() < $moneySum) {
 				// 35 _ paskaiciuoja graza
 				$change = $moneySum - $product->getPrice();
+				// iskviecimas decreaseQuantity metodas nt objekto
+				$product->decreaseQuantity();
 				return "<span class='ok'>" . $product->getName() . " Vending: your change is " . $change . "</span>";
 			}
+			// metodas decreaseQuantity iskvieciamas abiejais atvejais((1)reikia grazos ar (2)nereikia), jei i if-a neieina
+			$product->decreaseQuantity();
 			// 37 _ suma lygi prekes kainai
 			return "<span class='ok'>" . $product->getName() . " Vending" . "</span>";	
 			// 24 _ jei neegzistuoja
